@@ -22,7 +22,20 @@ namespace <#=Namespace#> {
         /// </summary>
 
         public class <#=tbl.CleanName#>Table: DatabaseTable {
-            
+            private static <#=tbl.CleanName#>Table instance;
+			
+			public static <#=tbl.CleanName#>Table DB
+			{
+				get 
+				{
+					if (instance == null)
+					{
+						instance = new <#=tbl.CleanName#>Table(ProviderFactory.GetProvider("<#=ConnectionStringName#>"));
+					}
+					return instance;
+				}
+			}
+			
             public <#=tbl.CleanName#>Table(IDataProvider provider):base("<#=tbl.Name#>",provider){
                 ClassName = "<#=tbl.ClassName#>";
                 SchemaName = "<#=tbl.Schema ?? ""#>";

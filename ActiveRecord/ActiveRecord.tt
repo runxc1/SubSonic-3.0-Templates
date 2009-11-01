@@ -10,6 +10,7 @@ using System.Linq.Expressions;
 using SubSonic.Schema;
 using System.Collections;
 using SubSonic;
+using System.Web.Script.Serialization;
 using SubSonic.Repository;
 using System.ComponentModel;
 using System.Data.Common;
@@ -131,6 +132,7 @@ namespace <#=Namespace #>
         
         partial void OnChanged();
         
+		[ScriptIgnore]
         public IList<IColumn> Columns{
             get{
                 return tbl.Columns;
@@ -321,6 +323,7 @@ namespace <#=Namespace #>
                     
                
 #>
+		[ScriptIgnore]
         public IQueryable<<#=fk.OtherClass #>> <#=propName #>
         {
             get
